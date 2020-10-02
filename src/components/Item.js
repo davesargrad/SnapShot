@@ -1,10 +1,15 @@
 import React from "react";
 import Container from "./Container";
 
+import Typography from '@material-ui/core/Typography';
+
 const Item = ({ searchTerm }) => {
   return (
     <div>
-      <h2>{searchTerm} Pictures</h2>
+      <Typography variant="h2" gutterBottom>
+        {searchTerm} Pictures
+      </Typography>
+
       <Container searchTerm={searchTerm} />
     </div>
   );

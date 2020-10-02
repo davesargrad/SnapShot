@@ -6,6 +6,15 @@ import Item from "./components/Item";
 import Search from "./components/Search";
 import NotFound from "./components/NotFound";
 
+
+// The following imports added as i look at retrofitting this app to use material ui
+import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import theme from "./theme";
+import styled from "styled-components";
+
+import Button from '@material-ui/core/Button';
+
 class App extends Component {
   // Prevent page reload, clear input, set URL and push history on submit
   handleSubmit = (e, history, searchInput) => {
@@ -17,42 +26,48 @@ class App extends Component {
 
   render() {
     return (
-      <PhotoContextProvider>
-        <HashRouter basename="/SnapScout">
-          <div className="container">
-            <Route
-              render={props => (
-                <Header
-                  handleSubmit={this.handleSubmit}
-                  history={props.history}
+      <ThemeProvider theme={theme}>
+      <CssBaseline />
+          <PhotoContextProvider>
+          
+            <HashRouter basename="/SnapScout">
+              <div className="container">
+                <Route
+                  render={props => (
+                    <Header
+                      handleSubmit={this.handleSubmit}
+                      history={props.history}
+                    />
+                  )}
                 />
-              )}
-            />
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => <Redirect to="/mountain" />}
-              />
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    render={() => <Redirect to="/mountain" />}
+                  />
 
-              <Route
-                path="/mountain"
-                render={() => <Item searchTerm="mountain" />}
-              />
-              <Route path="/beach" render={() => <Item searchTerm="beach" />} />
-              <Route path="/bird" render={() => <Item searchTerm="bird" />} />
-              <Route path="/food" render={() => <Item searchTerm="food" />} />
-              <Route
-                path="/search/:searchInput"
-                render={props => (
-                  <Search searchTerm={props.match.params.searchInput} />
-                )}
-              />
-              <Route component={NotFound} />
-            </Switch>
-          </div>
-        </HashRouter>
-      </PhotoContextProvider>
+                  <Route
+                    path="/mountain"
+                    render={() => <Item searchTerm="mountain" />}
+                  />
+                  <Route path="/beach" render={() => <Item searchTerm="beach" />} />
+                  <Route path="/bird" render={() => <Item searchTerm="bird" />} />
+                  <Route path="/food" render={() => <Item searchTerm="food" />} />
+                  <Route
+                    path="/search/:searchInput"
+                    render={props => (
+                      <Search searchTerm={props.match.params.searchInput} />
+                    )}
+                  />
+                  <Route component={NotFound} />
+                </Switch>
+              </div>
+            </HashRouter>
+          </PhotoContextProvider>
+          <Button variant="contained">Yay A Button!</Button>
+          <Button variant="contained">Yay A Button!</Button>
+      </ThemeProvider>
     );
   }
 }
