@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-      width: 1200,
+      width: 900,
       height: 450,
     },
   }),
@@ -27,6 +27,7 @@ const Gallery = props => {
   const results = props.data;
   let images;
   let noImages;
+  console.log("My images: ", results)
   // map variables to each item in fetched image array and return image component
   if (results.length > 0) {
     images = results.map(image => {
@@ -43,7 +44,7 @@ const Gallery = props => {
   }
   return (
     <div className={classes.root}>
-      <GridList cellHeight={'auto'} className={classes.gridList} cols={5} spacing={40} >
+      <GridList cellHeight={150} className={classes.gridList} cols={4} spacing={4} >
         {images}
         {noImages}
       </GridList>
