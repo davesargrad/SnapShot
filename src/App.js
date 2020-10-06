@@ -7,6 +7,7 @@ import Search from "./components/Search";
 import NotFound from "./components/NotFound";
 
 
+
 // The following imports added as i look at retrofitting this app to use material ui
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -24,7 +25,9 @@ class App extends Component {
     history.push(url);
   };
 
+
   render() {
+      console.log("my theme ", theme)
     return (
       <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -65,8 +68,8 @@ class App extends Component {
               </div>
             </HashRouter>
           </PhotoContextProvider>
-          <Button variant="contained">Yay A Button!</Button>
-          <Button variant="contained">Yay A Button!</Button>
+          <Button color="primary" variant="contained">Yay A Button!</Button>
+          <Button color="secondary" variant="contained">Yay A Button!</Button>
       </ThemeProvider>
     );
   }
